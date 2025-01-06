@@ -10,16 +10,18 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        // searchbox
-        Center(
-            child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SearchboxView(),
-        ))
-        // content
-      ],
+        body: SafeArea(
+      child: Column(
+        children: [
+          // searchbox
+          Center(
+              child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SearchboxView(),
+          ))
+          // content
+        ],
+      ),
     ));
   }
 }
