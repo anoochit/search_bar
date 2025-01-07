@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/services.dart';
@@ -15,7 +14,6 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     rootBundle.loadString('assets/post.json').then((v) {
       posts = postFromJson(v);
