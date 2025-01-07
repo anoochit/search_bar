@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:searchbox/app/modules/home/views/searchbox_view.dart';
 
 import '../controllers/home_controller.dart';
+import 'searchbox_view.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -15,11 +15,24 @@ class HomeView extends GetView<HomeController> {
         children: [
           // searchbox
           Center(
-              child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SearchboxView(),
-          ))
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SearchboxView(),
+            ),
+          ),
           // content
+          Expanded(
+            child: ListView.builder(
+              itemCount: controller.posts.length,
+              itemBuilder: (BuildContext context, int index) {
+                final post = controller.posts[index];
+                return ListTile(
+                  title: Text('${post.metadata?.title}'),
+                  subtitle: Text('${post.metadata?.excerpt}'),
+                );
+              },
+            ),
+          )
         ],
       ),
     ));

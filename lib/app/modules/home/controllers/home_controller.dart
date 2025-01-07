@@ -15,20 +15,28 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    rootBundle.loadString('assets/post.json').then((v) {
-      posts = postFromJson(v);
-    });
+    loadPost();
   }
 
   searchPost({required String keyword}) async {
     log('post size = ${posts.length}');
 
-    if (posts.isNotEmpty) {
-      result = posts
-          .where((e) => (e.metadata!.title!.toLowerCase().contains(keyword) ||
-              e.metadata!.excerpt!.toLowerCase().contains(keyword)))
-          .toList();
+    if (keyword.isNotEmpty) {
+      if (posts.isNotEmpty) {
+        result = posts
+            .where((e) => (e.metadata!.title!.toLowerCase().contains(keyword) ||
+                e.metadata!.excerpt!.toLowerCase().contains(keyword)))
+            .toList();
+      }
+    } else {
+      result.clear();
     }
+  }
+
+  void loadPost() {
+    rootBundle.loadString('assets/post.json').then((v) {
+      posts = postFromJson(v);
+    });
   }
 }
 

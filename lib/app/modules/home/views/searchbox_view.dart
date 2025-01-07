@@ -10,13 +10,11 @@ class SearchboxView extends GetView<HomeController> {
     return SearchAnchor.bar(
       barLeading: Icon(Icons.search),
       barHintText: 'Search...',
-      barElevation: WidgetStatePropertyAll(0.5),
+      barElevation: WidgetStatePropertyAll(0.1),
       isFullScreen: true,
       onChanged: (value) {
-        if (value.length > 1) {
-          // search
-          controller.searchPost(keyword: value);
-        }
+        // search
+        controller.searchPost(keyword: value);
       },
       suggestionsBuilder: (context, searchController) async {
         // show result as list tile
